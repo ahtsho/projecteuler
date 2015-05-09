@@ -30,22 +30,16 @@ public class MultiplesOf3and5 {
 		return multiplesOf5; 
 	}
 	
-	public static ArrayList<Integer> mergeArrayOfNumbers(ArrayList<Integer> nums1,ArrayList<Integer> nums2){
-		ArrayList<Integer> nums = new ArrayList<Integer>();
-		for (int i = 0; i < nums1.size(); i++){
-			nums.add(nums1.get(i));
-		}
-		for (int j = 0; j < nums2.size(); j++){
-			for (int i = 0; i < nums.size(); i++){
-				if(nums2.get(j)==nums.get(i)){
-					break;
-				}
-				nums.add(nums2.get(j));
+	public static ArrayList<Integer> multiplesOf3Or5Below(int i){
+		ArrayList<Integer> multiples = new ArrayList<Integer>();
+		for (int j = 3; j < i; j++){
+			if(j%5==0 || j%3==0){
+				multiples.add(j);
 			}
 		}
-		
-		return nums;
+		return multiples; 
 	}
+	
 	
 	public static int sumArrayOfNumbers (ArrayList<Integer> nums){
 		int sum = 0;
@@ -56,10 +50,6 @@ public class MultiplesOf3and5 {
 	}
 	
 	public static void main (String[] args){
-		ArrayList<Integer> multipOf3 = multiplesOf3Below(10);
-		ArrayList<Integer> multipOf5 = multiplesOf5Below(10);
-		ArrayList<Integer> multipOf3Or5 = mergeArrayOfNumbers(multipOf3, multipOf5);
-		int sum = sumArrayOfNumbers(multipOf3Or5);
-		System.out.println(sum);
+		System.out.println(sumArrayOfNumbers(multiplesOf3Or5Below(1000)));
 	}
 }
