@@ -1,5 +1,10 @@
 package com.ahadu.arithmetics;
 
+import java.util.ArrayList;
+
+import com.ahadu.utils.Adder;
+import com.ahadu.utils.Printer;
+
 public class EvenFibonacciNumbers {
 
 	/**
@@ -8,6 +13,41 @@ public class EvenFibonacciNumbers {
 	 * 
 	 * @param args
 	 */
+
+	public static void main(String[] args) {
+		// get sequence in fibonacci sequence up to 4.000.000
+		// felter only even
+		// sum sequence
+		System.out.println(Adder.sumSequence(filerEvenFibonacci(getFibonacciUpTo(4000000))));
+		
+	}
+
+	private static ArrayList<Integer> filerEvenFibonacci(ArrayList<Integer> fibs) {
+		int current = 0;
+		while (current < fibs.size()) {
+			if (fibs.get(current) % 2 == 1) {
+				fibs.remove(current);
+			} else {
+				current++;
+			}
+		}
+		return fibs;
+	}
+
+	private static ArrayList<Integer> getFibonacciUpTo(int n) {
+		ArrayList<Integer> fibN = new ArrayList<Integer>();
+		fibN.add(1); // The first two terms of Fibonacci are 1, 1
+		fibN.add(1);
+		int current = 1;
+		// until what is going to be added as next term of the sequence is
+		// less than the given number, keep on adding terms
+		while (fibN.get(current - 1) + fibN.get(current) < n) {
+			fibN.add(fibN.get(current - 1) + fibN.get(current));
+			current++;
+		}
+		return fibN;
+	}
+
 	public static int calculateSumOfEvenTermsOfBoundFibonacciSequence(int bound) {
 		// get Fibonacci Sequence up to a bound
 		// get only even valued terms
@@ -17,17 +57,17 @@ public class EvenFibonacciNumbers {
 
 	public static int sumOfSequence(int[] sequence) {
 		int sum = 0;
-		for (int i = 0; i < sequence.length; i++){
+		for (int i = 0; i < sequence.length; i++) {
 			sum += sequence[i];
 		}
 		return sum;
 	}
 
 	public static int[] getEvenTermsOfSeqeunce(int[] sequence) {
-		int[] evens = new int [sequence.length/2 + 1];
+		int[] evens = new int[sequence.length / 2 + 1];
 		int e = 0;
-		for (int i = 0; i < sequence.length; i++){
-			if(sequence[i]%2 == 0 && sequence[i] != 0){
+		for (int i = 0; i < sequence.length; i++) {
+			if (sequence[i] % 2 == 0 && sequence[i] != 0) {
 				evens[e] = sequence[i];
 				e++;
 			}
@@ -47,9 +87,9 @@ public class EvenFibonacciNumbers {
 			return boundFibonacciSequence;
 		} else {
 			boundFibonacciSequence[1] = 2;
-			for (int i = 3; i <= (lastFibonacci=nThfibonacci(i)); i++) {
+			for (int i = 3; i <= (lastFibonacci = nThfibonacci(i)); i++) {
 				if (lastFibonacci < num) {
-					boundFibonacciSequence[i-1] = lastFibonacci;
+					boundFibonacciSequence[i - 1] = lastFibonacci;
 				} else {
 					break;
 				}
